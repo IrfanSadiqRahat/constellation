@@ -1,0 +1,16 @@
+{
+  "id": "open-source-release",
+  "name": "Open-source release team",
+  "description": "Take a library from internal to widely-adopted OSS",
+  "agents": [
+    "product-strategist", "docs-architect", "tutorial-author", "api-docs-writer",
+    "release-notes-writer", "license-auditor", "supply-chain-defender",
+    "growth-lead", "technical-evangelist"
+  ],
+  "pipeline": [
+    { "step": "position", "uses": ["product-strategist"], "produces": "Strategy" },
+    { "step": "document", "uses": ["docs-architect", "tutorial-author", "api-docs-writer"], "consumes": "Strategy", "produces": "DocsSite" },
+    { "step": "release", "uses": ["release-notes-writer", "license-auditor", "supply-chain-defender"], "consumes": "DocsSite", "produces": "Release" },
+    { "step": "spread", "uses": ["growth-lead", "technical-evangelist"], "consumes": "Release", "produces": "AdoptionPlan" }
+  ]
+}

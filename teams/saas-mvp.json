@@ -1,0 +1,18 @@
+{
+  "id": "saas-mvp",
+  "name": "SaaS MVP team",
+  "description": "Ship a paid product from zero to first revenue",
+  "agents": [
+    "product-strategist", "prd-writer", "design-lead", "frontend-architect",
+    "backend-architect", "db-architect", "sre-lead", "growth-lead",
+    "billing-architect", "privacy-architect"
+  ],
+  "pipeline": [
+    { "step": "discover", "uses": ["product-strategist", "prd-writer"], "produces": "PRD" },
+    { "step": "design", "uses": ["design-lead"], "consumes": "PRD", "produces": "DesignBrief" },
+    { "step": "build", "uses": ["frontend-architect", "backend-architect", "db-architect"], "consumes": "DesignBrief", "produces": "MVP" },
+    { "step": "monetize", "uses": ["billing-architect"], "consumes": "MVP", "produces": "MonetizedMVP" },
+    { "step": "harden", "uses": ["sre-lead", "privacy-architect"], "consumes": "MonetizedMVP", "produces": "ProductionMVP" },
+    { "step": "launch", "uses": ["growth-lead"], "consumes": "ProductionMVP", "produces": "LaunchPlan" }
+  ]
+}

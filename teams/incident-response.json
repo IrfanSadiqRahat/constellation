@@ -1,0 +1,15 @@
+{
+  "id": "incident-response",
+  "name": "Incident response team",
+  "description": "Activate during a live production incident",
+  "agents": [
+    "incident-commander", "sre-lead", "observability-engineer", "appsec-engineer",
+    "runbook-author", "soc-analyst", "retrospective-facilitator"
+  ],
+  "pipeline": [
+    { "step": "command", "uses": ["incident-commander"], "produces": "IncidentChannel" },
+    { "step": "diagnose", "uses": ["observability-engineer", "soc-analyst"], "consumes": "IncidentChannel", "produces": "Diagnosis" },
+    { "step": "mitigate", "uses": ["sre-lead", "appsec-engineer"], "consumes": "Diagnosis", "produces": "Mitigation" },
+    { "step": "document", "uses": ["runbook-author", "retrospective-facilitator"], "consumes": "Mitigation", "produces": "PostmortemDoc" }
+  ]
+}

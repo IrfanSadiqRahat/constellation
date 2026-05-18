@@ -1,0 +1,16 @@
+{
+  "id": "growth-engine",
+  "name": "Growth engine team",
+  "description": "Build a measurable, compounding growth machine",
+  "agents": [
+    "growth-lead", "seo-architect", "content-marketer", "landing-page-strategist",
+    "growth-engineer", "funnel-analyst", "ab-test-engineer", "lifecycle-marketer"
+  ],
+  "pipeline": [
+    { "step": "model", "uses": ["growth-lead"], "produces": "GrowthModel" },
+    { "step": "instrument", "uses": ["growth-engineer", "funnel-analyst"], "consumes": "GrowthModel", "produces": "TrackingPlan" },
+    { "step": "acquire", "uses": ["seo-architect", "content-marketer", "landing-page-strategist"], "consumes": "GrowthModel", "produces": "AcquisitionPlan" },
+    { "step": "experiment", "uses": ["ab-test-engineer"], "consumes": "AcquisitionPlan", "produces": "ExperimentReport" },
+    { "step": "retain", "uses": ["lifecycle-marketer"], "consumes": "TrackingPlan", "produces": "LifecycleProgram" }
+  ]
+}

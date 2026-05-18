@@ -1,0 +1,17 @@
+{
+  "id": "ai-product",
+  "name": "AI product team",
+  "description": "Ship an LLM-powered feature with proper evals + guardrails",
+  "agents": [
+    "product-strategist", "ai-engineer", "rag-architect", "prompt-engineer",
+    "eval-engineer", "hallucination-auditor", "model-router", "backend-architect",
+    "privacy-architect", "growth-lead"
+  ],
+  "pipeline": [
+    { "step": "scope", "uses": ["product-strategist"], "produces": "Strategy" },
+    { "step": "design", "uses": ["ai-engineer", "rag-architect", "prompt-engineer"], "consumes": "Strategy", "produces": "AIArchitecture" },
+    { "step": "evaluate", "uses": ["eval-engineer", "hallucination-auditor"], "consumes": "AIArchitecture", "produces": "EvalSuite" },
+    { "step": "wire", "uses": ["backend-architect", "model-router"], "consumes": "AIArchitecture", "produces": "AIService" },
+    { "step": "ship", "uses": ["privacy-architect", "growth-lead"], "consumes": "AIService", "produces": "AIFeature" }
+  ]
+}

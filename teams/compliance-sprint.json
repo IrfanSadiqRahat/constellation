@@ -1,0 +1,14 @@
+{
+  "id": "compliance-sprint",
+  "name": "Compliance sprint team",
+  "description": "Stand up SOC 2 / ISO / HIPAA / GDPR readiness fast",
+  "agents": [
+    "privacy-architect", "gdpr-mapper", "hipaa-mapper", "soc2-prep-lead",
+    "pci-compliance-lead", "ai-act-mapper", "security-architect", "compliance-mapper"
+  ],
+  "pipeline": [
+    { "step": "inventory", "uses": ["privacy-architect"], "produces": "DataInventory" },
+    { "step": "map", "uses": ["gdpr-mapper", "hipaa-mapper", "soc2-prep-lead", "pci-compliance-lead", "ai-act-mapper"], "consumes": "DataInventory", "produces": "ComplianceMatrix" },
+    { "step": "control", "uses": ["security-architect", "compliance-mapper"], "consumes": "ComplianceMatrix", "produces": "ControlEvidence" }
+  ]
+}

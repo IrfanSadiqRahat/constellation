@@ -1,0 +1,16 @@
+{
+  "id": "security-audit",
+  "name": "Security audit team",
+  "description": "Full-stack security assessment of an existing app",
+  "agents": [
+    "security-architect", "threat-modeler", "appsec-engineer", "pentester",
+    "supply-chain-defender", "secrets-manager", "compliance-mapper", "privacy-architect"
+  ],
+  "pipeline": [
+    { "step": "model", "uses": ["threat-modeler"], "produces": "ThreatModel" },
+    { "step": "scan", "uses": ["appsec-engineer", "supply-chain-defender"], "consumes": "ThreatModel", "produces": "AppsecReport" },
+    { "step": "exploit", "uses": ["pentester"], "consumes": "AppsecReport", "produces": "PentestReport" },
+    { "step": "remediate", "uses": ["security-architect", "secrets-manager"], "consumes": "PentestReport", "produces": "SecurityFixes" },
+    { "step": "certify", "uses": ["compliance-mapper", "privacy-architect"], "consumes": "SecurityFixes", "produces": "ComplianceMatrix" }
+  ]
+}

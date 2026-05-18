@@ -1,0 +1,14 @@
+{
+  "id": "fundraise",
+  "name": "Fundraise team",
+  "description": "Prep a venture round end-to-end",
+  "agents": [
+    "product-strategist", "opportunity-sizer", "financial-modeler", "runway-planner",
+    "unit-economics-analyst", "fundraising-prep", "cap-table-modeler"
+  ],
+  "pipeline": [
+    { "step": "narrative", "uses": ["product-strategist", "opportunity-sizer"], "produces": "Narrative" },
+    { "step": "model", "uses": ["financial-modeler", "runway-planner", "unit-economics-analyst"], "consumes": "Narrative", "produces": "FinancialModel" },
+    { "step": "pack", "uses": ["fundraising-prep", "cap-table-modeler"], "consumes": "FinancialModel", "produces": "FundraisingPack" }
+  ]
+}

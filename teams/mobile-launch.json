@@ -1,0 +1,17 @@
+{
+  "id": "mobile-launch",
+  "name": "Mobile launch team",
+  "description": "Ship a mobile app to both stores",
+  "agents": [
+    "product-strategist", "design-lead", "mobile-architect", "ios-specialist",
+    "android-specialist", "mobile-perf-engineer", "mobile-release-engineer",
+    "aso-specialist", "growth-lead"
+  ],
+  "pipeline": [
+    { "step": "scope", "uses": ["product-strategist", "design-lead"], "produces": "PRD" },
+    { "step": "architect", "uses": ["mobile-architect"], "consumes": "PRD", "produces": "MobileArchitecture" },
+    { "step": "build", "uses": ["ios-specialist", "android-specialist"], "consumes": "MobileArchitecture", "produces": "MobileApp" },
+    { "step": "tune", "uses": ["mobile-perf-engineer"], "consumes": "MobileApp", "produces": "TunedApp" },
+    { "step": "release", "uses": ["mobile-release-engineer", "aso-specialist", "growth-lead"], "consumes": "TunedApp", "produces": "LiveApp" }
+  ]
+}

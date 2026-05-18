@@ -1,0 +1,369 @@
+{
+  "version": 1,
+  "updatedAt": "2026-05-18",
+  "totalAgents": 200,
+  "totalTeams": 20,
+  "authoredKeystones": 30,
+  "teams": [
+    {
+      "id": "product",
+      "name": "Product",
+      "lead": "product-strategist",
+      "description": "Vision, discovery, prioritization, GTM",
+      "agents": [
+        { "id": "product-strategist", "role": "Owns vision, north star metric, quarterly bets", "in": "BusinessGoal", "out": "Strategy", "authored": true },
+        { "id": "requirements-analyst", "role": "Turns stakeholder input into testable requirements", "in": "Strategy", "out": "Requirements", "authored": true },
+        { "id": "jtbd-interviewer", "role": "Runs Jobs-To-Be-Done discovery interviews", "in": "Persona[]", "out": "Job[]" },
+        { "id": "persona-architect", "role": "Builds research-grounded personas with JTBD anchors", "in": "Interview[]", "out": "Persona[]" },
+        { "id": "roadmap-planner", "role": "Sequences bets across quarters with capacity model", "in": "Strategy", "out": "Roadmap" },
+        { "id": "prd-writer", "role": "Writes complete PRD: problem, solution, scope, KPIs", "in": "Requirements", "out": "PRD", "authored": true },
+        { "id": "opportunity-sizer", "role": "TAM/SAM/SOM, market sizing, demand validation", "in": "Strategy", "out": "MarketModel" },
+        { "id": "pricing-strategist", "role": "Value-based pricing, tier design, willingness-to-pay tests", "in": "PRD", "out": "PricingModel" },
+        { "id": "gtm-planner", "role": "Launch plan, channels, positioning, messaging hierarchy", "in": "PRD", "out": "GTMPlan" },
+        { "id": "retention-analyst", "role": "Cohort retention, churn drivers, activation milestones", "in": "Telemetry", "out": "RetentionReport" }
+      ]
+    },
+    {
+      "id": "design",
+      "name": "Design",
+      "lead": "design-lead",
+      "description": "UX, UI, motion, content, design systems",
+      "agents": [
+        { "id": "design-lead", "role": "Owns design strategy, principles, critique cadence", "in": "PRD", "out": "DesignBrief", "authored": true },
+        { "id": "ux-researcher", "role": "Mixed-methods user research, usability testing protocols", "in": "DesignBrief", "out": "ResearchFindings" },
+        { "id": "information-architect", "role": "Sitemap, taxonomy, navigation, content modeling", "in": "DesignBrief", "out": "IASkeleton" },
+        { "id": "interaction-designer", "role": "Flows, state diagrams, micro-interactions", "in": "IASkeleton", "out": "FlowSpec" },
+        { "id": "visual-designer", "role": "Typography, color, spacing, brand expression", "in": "DesignBrief", "out": "VisualLanguage", "authored": true },
+        { "id": "motion-designer", "role": "Easing, choreography, perceived perf, transitions", "in": "FlowSpec", "out": "MotionSpec" },
+        { "id": "design-system-architect", "role": "Tokens, primitives, composition rules, contribution model", "in": "VisualLanguage", "out": "DesignSystem", "authored": true },
+        { "id": "accessibility-specialist", "role": "WCAG AAA, screen reader, keyboard, color-contrast audits", "in": "DesignBrief", "out": "A11yReport", "authored": true },
+        { "id": "ux-copywriter", "role": "Microcopy, error messages, voice, empty states", "in": "FlowSpec", "out": "CopyDeck" },
+        { "id": "prototyper", "role": "Rapid hi-fi prototype for stakeholder validation", "in": "FlowSpec", "out": "Prototype" }
+      ]
+    },
+    {
+      "id": "frontend",
+      "name": "Frontend",
+      "lead": "frontend-architect",
+      "description": "Web UI engineering across frameworks",
+      "agents": [
+        { "id": "frontend-architect", "role": "Stack choice, rendering strategy, perf budget, monorepo plan", "in": "DesignSystem", "out": "FrontendArchitecture", "authored": true },
+        { "id": "react-specialist", "role": "Hooks, suspense, server components, Next.js best practice", "in": "FrontendArchitecture", "out": "ReactCode", "authored": true },
+        { "id": "vue-specialist", "role": "Composition API, Pinia, Nuxt SSR/SSG patterns", "in": "FrontendArchitecture", "out": "VueCode" },
+        { "id": "svelte-specialist", "role": "Runes, SvelteKit endpoints, transitions, stores", "in": "FrontendArchitecture", "out": "SvelteCode" },
+        { "id": "css-architect", "role": "Cascade strategy, container queries, design tokens, dark mode", "in": "VisualLanguage", "out": "StyleSystem", "authored": true },
+        { "id": "animation-engineer", "role": "GPU-accelerated, FLIP, scroll-linked, gesture-driven motion", "in": "MotionSpec", "out": "AnimationCode" },
+        { "id": "state-manager", "role": "Zustand/Redux/XState; co-location vs global; persistence", "in": "FrontendArchitecture", "out": "StateLayer" },
+        { "id": "frontend-perf-engineer", "role": "Core Web Vitals, bundle, hydration, RUM, regression budgets", "in": "ReactCode", "out": "PerfReport", "authored": true },
+        { "id": "web-platform-engineer", "role": "Native web APIs, PWA, file system access, web workers", "in": "FrontendArchitecture", "out": "PlatformCode" },
+        { "id": "micro-frontend-architect", "role": "Module federation, contracts, shared deps, deploy independence", "in": "FrontendArchitecture", "out": "MFArchitecture" }
+      ]
+    },
+    {
+      "id": "backend",
+      "name": "Backend",
+      "lead": "backend-architect",
+      "description": "Service design, APIs, distributed systems",
+      "agents": [
+        { "id": "backend-architect", "role": "Boundary design, persistence pattern, sync vs async, scale plan", "in": "PRD", "out": "BackendArchitecture", "authored": true },
+        { "id": "api-designer", "role": "REST/GraphQL/gRPC contracts, versioning, error envelopes", "in": "BackendArchitecture", "out": "ApiContract", "authored": true },
+        { "id": "microservices-architect", "role": "Service boundaries, communication, saga patterns, DDD", "in": "BackendArchitecture", "out": "ServiceMap" },
+        { "id": "event-driven-architect", "role": "Event taxonomy, schemas, ordering, dedup, replay", "in": "BackendArchitecture", "out": "EventModel", "authored": true },
+        { "id": "graphql-architect", "role": "Schema design, resolvers, dataloader, federation, persisted queries", "in": "ApiContract", "out": "GraphQLSchema" },
+        { "id": "websocket-engineer", "role": "Real-time channels, presence, fanout, backpressure", "in": "ApiContract", "out": "WSGateway" },
+        { "id": "queue-engineer", "role": "BullMQ/SQS/Kafka, retries, DLQ, idempotency keys, exactly-once", "in": "EventModel", "out": "QueueTopology", "authored": true },
+        { "id": "idempotency-architect", "role": "Request keys, dedup windows, side-effect isolation", "in": "ApiContract", "out": "IdempotencySpec" },
+        { "id": "multi-tenant-architect", "role": "Row-level vs DB-per-tenant, isolation, noisy neighbor mitigation", "in": "BackendArchitecture", "out": "TenancyModel" },
+        { "id": "rate-limit-engineer", "role": "Token bucket, leaky bucket, sliding window, per-tenant quotas", "in": "ApiContract", "out": "RateLimitPolicy" }
+      ]
+    },
+    {
+      "id": "data",
+      "name": "Data Engineering",
+      "lead": "data-architect",
+      "description": "Schemas, pipelines, warehouses, quality",
+      "agents": [
+        { "id": "data-architect", "role": "Bronze/silver/gold layout, contracts, ownership, SLO model", "in": "PRD", "out": "DataArchitecture", "authored": true },
+        { "id": "schema-designer", "role": "Normalization, indexing, partitioning, slowly-changing dims", "in": "DataArchitecture", "out": "SchemaDDL" },
+        { "id": "query-optimizer", "role": "EXPLAIN plans, index design, materialized views, denormalization", "in": "SchemaDDL", "out": "QueryReport" },
+        { "id": "etl-engineer", "role": "Pipelines (Airflow/Dagster), incremental loads, backfills", "in": "DataArchitecture", "out": "PipelineDAG" },
+        { "id": "streaming-engineer", "role": "Kafka/Flink, windowing, watermarks, exactly-once semantics", "in": "EventModel", "out": "StreamTopology" },
+        { "id": "lakehouse-architect", "role": "Iceberg/Delta/Hudi, table format trade-offs, time travel", "in": "DataArchitecture", "out": "LakehouseDesign" },
+        { "id": "data-quality-engineer", "role": "Great Expectations, contracts, freshness, completeness, accuracy", "in": "DataArchitecture", "out": "QualityRules" },
+        { "id": "lineage-engineer", "role": "OpenLineage, column-level lineage, impact analysis", "in": "PipelineDAG", "out": "LineageGraph" },
+        { "id": "dbt-specialist", "role": "Model layers, tests, docs, exposures, semantic layer", "in": "DataArchitecture", "out": "DbtProject" },
+        { "id": "timeseries-engineer", "role": "ClickHouse/TimescaleDB, downsampling, retention, anomaly detection", "in": "DataArchitecture", "out": "TSDesign" }
+      ]
+    },
+    {
+      "id": "mobile",
+      "name": "Mobile",
+      "lead": "mobile-architect",
+      "description": "iOS, Android, cross-platform delivery",
+      "agents": [
+        { "id": "mobile-architect", "role": "Native vs cross-plat, offline strategy, CI matrix, release model", "in": "PRD", "out": "MobileArchitecture", "authored": true },
+        { "id": "ios-specialist", "role": "Swift, SwiftUI, async/await, Combine, App Store policy", "in": "MobileArchitecture", "out": "iOSCode" },
+        { "id": "android-specialist", "role": "Kotlin, Jetpack Compose, coroutines, Play Store policy", "in": "MobileArchitecture", "out": "AndroidCode" },
+        { "id": "react-native-engineer", "role": "New Architecture, Fabric, Hermes, native modules", "in": "MobileArchitecture", "out": "RNCode" },
+        { "id": "flutter-engineer", "role": "Riverpod, Bloc, hooks, code-gen, platform channels", "in": "MobileArchitecture", "out": "FlutterCode" },
+        { "id": "mobile-perf-engineer", "role": "Cold start, jank, memory, battery, network efficiency", "in": "iOSCode", "out": "MobilePerfReport" },
+        { "id": "offline-first-architect", "role": "CRDT, sync engine, conflict resolution, queue-on-disconnect", "in": "MobileArchitecture", "out": "OfflineSpec" },
+        { "id": "mobile-release-engineer", "role": "Fastlane, EAS, signing, phased rollouts, hotfix lanes", "in": "MobileArchitecture", "out": "ReleaseRunbook" },
+        { "id": "push-notification-engineer", "role": "APNs/FCM, segmentation, deep links, silent push", "in": "MobileArchitecture", "out": "NotificationPlan" },
+        { "id": "aso-specialist", "role": "Keyword strategy, screenshots, conversion, attribution", "in": "GTMPlan", "out": "ASOReport" }
+      ]
+    },
+    {
+      "id": "ai",
+      "name": "AI / ML",
+      "lead": "ai-engineer",
+      "description": "LLM apps, RAG, evals, agents",
+      "agents": [
+        { "id": "ai-engineer", "role": "LLM app architecture, orchestration, latency vs quality budgets", "in": "PRD", "out": "AIArchitecture", "authored": true },
+        { "id": "rag-architect", "role": "Chunking, embedding, retrieval, re-ranking, eval-driven tuning", "in": "AIArchitecture", "out": "RAGPipeline", "authored": true },
+        { "id": "eval-engineer", "role": "LLM-as-judge, holdout sets, regression suites, error analysis", "in": "AIArchitecture", "out": "EvalSuite", "authored": true },
+        { "id": "fine-tuning-engineer", "role": "Dataset curation, LoRA/QLoRA, hyperparameter sweeps, eval gates", "in": "AIArchitecture", "out": "FineTunedModel" },
+        { "id": "prompt-engineer", "role": "System prompts, few-shot, chain-of-thought, structured output", "in": "AIArchitecture", "out": "PromptLibrary", "authored": true },
+        { "id": "agent-orchestrator", "role": "Multi-agent coordination, tool routing, planner/worker patterns", "in": "AIArchitecture", "out": "AgentGraph" },
+        { "id": "vector-search-engineer", "role": "Pinecone/Qdrant/pgvector, HNSW tuning, hybrid search, filters", "in": "RAGPipeline", "out": "VectorIndex" },
+        { "id": "multimodal-engineer", "role": "Vision/audio/video pipelines, alignment, caption quality", "in": "AIArchitecture", "out": "MultimodalPipeline" },
+        { "id": "model-router", "role": "Cost/quality/latency routing, fallback chains, A/B by model", "in": "AIArchitecture", "out": "RoutingPolicy" },
+        { "id": "hallucination-auditor", "role": "Grounded-claim detection, citation enforcement, abstention rules", "in": "AIArchitecture", "out": "FactualityReport" }
+      ]
+    },
+    {
+      "id": "devops",
+      "name": "DevOps / SRE",
+      "lead": "sre-lead",
+      "description": "Reliability, deploys, incident response",
+      "agents": [
+        { "id": "sre-lead", "role": "SLO design, error budgets, on-call rotation, postmortem culture", "in": "BackendArchitecture", "out": "ReliabilityPlan", "authored": true },
+        { "id": "terraform-architect", "role": "Module layout, state, drift, policy-as-code, multi-account", "in": "BackendArchitecture", "out": "TerraformLayout" },
+        { "id": "k8s-architect", "role": "Workloads, networking, autoscaling, secret mgmt, multi-tenancy", "in": "BackendArchitecture", "out": "K8sManifests" },
+        { "id": "ci-cd-engineer", "role": "Pipelines, caching, matrix, deploy gates, artifact provenance", "in": "BackendArchitecture", "out": "PipelineConfig", "authored": true },
+        { "id": "observability-engineer", "role": "Metrics/logs/traces, dashboards, alerts, RUM, exemplars", "in": "BackendArchitecture", "out": "ObservabilityStack", "authored": true },
+        { "id": "incident-commander", "role": "IC playbook, comms, severity, blameless postmortem", "in": "Incident", "out": "PostmortemDoc", "authored": true },
+        { "id": "chaos-engineer", "role": "Game days, fault injection, blast radius limits, hypothesis tests", "in": "ReliabilityPlan", "out": "ChaosExperiment" },
+        { "id": "capacity-planner", "role": "Headroom model, autoscaling thresholds, cost projections", "in": "Telemetry", "out": "CapacityModel" },
+        { "id": "runbook-author", "role": "Diagnostic trees, copy-paste commands, escalation paths", "in": "ReliabilityPlan", "out": "RunbookSet" },
+        { "id": "disaster-recovery-lead", "role": "RTO/RPO targets, backups, runbook drills, cross-region failover", "in": "ReliabilityPlan", "out": "DRPlan" }
+      ]
+    },
+    {
+      "id": "cloud",
+      "name": "Cloud",
+      "lead": "cloud-architect",
+      "description": "AWS, GCP, Azure, edge, finops",
+      "agents": [
+        { "id": "cloud-architect", "role": "Multi-account strategy, network topology, identity, guardrails", "in": "BackendArchitecture", "out": "CloudArchitecture", "authored": true },
+        { "id": "aws-specialist", "role": "EKS, ECS, Lambda, RDS, IAM, Org SCPs, Control Tower", "in": "CloudArchitecture", "out": "AWSDesign" },
+        { "id": "gcp-specialist", "role": "GKE, Cloud Run, BigQuery, IAM, VPC SC, Org Policy", "in": "CloudArchitecture", "out": "GCPDesign" },
+        { "id": "azure-specialist", "role": "AKS, Functions, Entra ID, Policy, Landing Zones", "in": "CloudArchitecture", "out": "AzureDesign" },
+        { "id": "cloudflare-specialist", "role": "Workers, R2, KV, D1, Durable Objects, Pages, Zero Trust", "in": "CloudArchitecture", "out": "EdgeDesign" },
+        { "id": "edge-computing-engineer", "role": "Edge-first arch, regional failover, request routing", "in": "CloudArchitecture", "out": "EdgePlan" },
+        { "id": "serverless-architect", "role": "Cold start, fan-out, step functions, cost-of-execution", "in": "BackendArchitecture", "out": "ServerlessDesign" },
+        { "id": "multi-cloud-lead", "role": "Portability seams, abstraction cost, exit strategy", "in": "CloudArchitecture", "out": "MultiCloudPlan" },
+        { "id": "finops-engineer", "role": "Cost allocation, anomaly detection, savings plans, unit economics", "in": "Telemetry", "out": "CostReport" },
+        { "id": "cloud-migration-lead", "role": "6Rs framework, dependency mapping, cutover orchestration", "in": "CloudArchitecture", "out": "MigrationPlan" }
+      ]
+    },
+    {
+      "id": "security",
+      "name": "Security",
+      "lead": "security-architect",
+      "description": "Threats, appsec, devsecops, compliance",
+      "agents": [
+        { "id": "security-architect", "role": "Trust boundaries, identity, secret mgmt, defense in depth", "in": "BackendArchitecture", "out": "SecurityArchitecture", "authored": true },
+        { "id": "threat-modeler", "role": "STRIDE, attack trees, abuse cases, mitigations matrix", "in": "BackendArchitecture", "out": "ThreatModel", "authored": true },
+        { "id": "appsec-engineer", "role": "OWASP Top 10, secure code review, SAST/DAST gating", "in": "Code", "out": "AppsecReport", "authored": true },
+        { "id": "pentester", "role": "Authorized exploitation, proof-of-concept chain, kill-chain mapping", "in": "Target", "out": "PentestReport" },
+        { "id": "devsecops-engineer", "role": "Shift-left scanning, policy-as-code, signed artifacts, SBOM", "in": "PipelineConfig", "out": "SecuredPipeline" },
+        { "id": "sigma-rule-author", "role": "Detection-as-code, false-positive tuning, MITRE ATT&CK coverage", "in": "ThreatModel", "out": "DetectionRules" },
+        { "id": "soc-analyst", "role": "Triage, IR escalation, log pivots, IOC enrichment", "in": "Alert", "out": "TriageReport" },
+        { "id": "compliance-mapper", "role": "SOC2/ISO27001/HIPAA/PCI control mapping, evidence collection", "in": "SecurityArchitecture", "out": "ComplianceMatrix" },
+        { "id": "secrets-manager", "role": "Vaulting, rotation, leak detection, just-in-time access", "in": "SecurityArchitecture", "out": "SecretsPolicy" },
+        { "id": "supply-chain-defender", "role": "Dependency provenance, signing, lockfile review, typosquat detect", "in": "Code", "out": "SupplyChainReport" }
+      ]
+    },
+    {
+      "id": "quality",
+      "name": "Quality",
+      "lead": "qa-lead",
+      "description": "Test strategy, automation, audits",
+      "agents": [
+        { "id": "qa-lead", "role": "Test pyramid, coverage targets, risk-based test allocation", "in": "PRD", "out": "QAStrategy", "authored": true },
+        { "id": "test-strategist", "role": "Boundary analysis, equivalence classes, decision tables", "in": "PRD", "out": "TestPlan" },
+        { "id": "e2e-engineer", "role": "Playwright/Cypress, page objects, parallel sharding, flake control", "in": "FlowSpec", "out": "E2ESuite" },
+        { "id": "contract-test-engineer", "role": "Pact, consumer-driven contracts, provider verification", "in": "ApiContract", "out": "ContractSuite" },
+        { "id": "load-test-engineer", "role": "k6/Gatling, percentiles, soak/spike/stress, SLO-bound assertions", "in": "ApiContract", "out": "LoadReport" },
+        { "id": "mutation-test-engineer", "role": "Stryker/PIT, kill-rate analysis, surfacing weak assertions", "in": "Code", "out": "MutationReport" },
+        { "id": "accessibility-auditor", "role": "axe, manual flows, WCAG conformance, AT user testing", "in": "Code", "out": "A11yAudit" },
+        { "id": "visual-regression-engineer", "role": "Percy/Chromatic, baseline mgmt, deterministic capture", "in": "Code", "out": "VisualRegSuite" },
+        { "id": "bug-replicator", "role": "Minimal repro, environment isolation, video capture, bisection", "in": "BugReport", "out": "ReproPackage" },
+        { "id": "flake-detective", "role": "Retry analysis, root-cause flake categorization, quarantine policy", "in": "CISignal", "out": "FlakeReport" }
+      ]
+    },
+    {
+      "id": "docs",
+      "name": "Documentation",
+      "lead": "docs-architect",
+      "description": "Reference, tutorials, runbooks, ADRs",
+      "agents": [
+        { "id": "docs-architect", "role": "Diataxis layout, IA, contribution model, doc-as-code", "in": "PRD", "out": "DocsPlan", "authored": true },
+        { "id": "tutorial-author", "role": "Goal-oriented learning paths, working code, success criteria", "in": "DocsPlan", "out": "Tutorial" },
+        { "id": "api-docs-writer", "role": "OpenAPI-driven reference, examples per endpoint, error catalog", "in": "ApiContract", "out": "ApiDocs" },
+        { "id": "runbook-writer", "role": "Stepwise diagnostics, copy-paste safe, rollback paths", "in": "Incident", "out": "Runbook" },
+        { "id": "changelog-curator", "role": "Keep-a-Changelog, semver, breaking-change callouts", "in": "Commits", "out": "Changelog" },
+        { "id": "adr-author", "role": "Context/decision/consequences, supersession trail", "in": "Decision", "out": "ADR" },
+        { "id": "release-notes-writer", "role": "User-facing, problem-first, screenshots, GIFs, migration notes", "in": "Release", "out": "ReleaseNotes" },
+        { "id": "onboarding-author", "role": "First-15-min success path, environment bootstrap, mental model", "in": "DocsPlan", "out": "OnboardingDoc" },
+        { "id": "faq-engineer", "role": "Mined from support tickets, search-optimized, evergreen", "in": "SupportLogs", "out": "FAQ" },
+        { "id": "video-script-writer", "role": "Hook, demo, beats, captions, B-roll cues for screencasts", "in": "Feature", "out": "VideoScript" }
+      ]
+    },
+    {
+      "id": "database",
+      "name": "Databases",
+      "lead": "db-architect",
+      "description": "Postgres, NoSQL, key-value, search",
+      "agents": [
+        { "id": "db-architect", "role": "Engine selection, sharding plan, replication, HA, backups", "in": "BackendArchitecture", "out": "DBArchitecture", "authored": true },
+        { "id": "postgres-specialist", "role": "Indexes, EXPLAIN, vacuum, partitioning, logical repl", "in": "SchemaDDL", "out": "PostgresPlan", "authored": true },
+        { "id": "mysql-specialist", "role": "InnoDB tuning, group replication, point-in-time recovery", "in": "SchemaDDL", "out": "MySQLPlan" },
+        { "id": "mongo-specialist", "role": "Document modeling, indexes, aggregation pipelines, sharding", "in": "DataArchitecture", "out": "MongoPlan" },
+        { "id": "redis-specialist", "role": "Data structures, eviction, persistence, cluster, streams", "in": "DataArchitecture", "out": "RedisPlan" },
+        { "id": "elasticsearch-specialist", "role": "Mapping, analyzers, scoring, sharding, ILM", "in": "DataArchitecture", "out": "ESPlan" },
+        { "id": "clickhouse-specialist", "role": "MergeTree, materialized views, projections, distributed", "in": "DataArchitecture", "out": "ClickhousePlan" },
+        { "id": "sqlite-specialist", "role": "WAL, FTS5, embedding, RAII, mobile sync patterns", "in": "DataArchitecture", "out": "SQLitePlan" },
+        { "id": "dynamodb-specialist", "role": "Single-table design, GSI/LSI, capacity model, streams", "in": "DataArchitecture", "out": "DynamoPlan" },
+        { "id": "migration-planner", "role": "Zero-downtime schema change, expand/contract, dual-write", "in": "SchemaDDL", "out": "MigrationPlan", "authored": true }
+      ]
+    },
+    {
+      "id": "growth",
+      "name": "Growth",
+      "lead": "growth-lead",
+      "description": "SEO, content, funnels, experiments",
+      "agents": [
+        { "id": "growth-lead", "role": "Growth model, north star metric, lever prioritization", "in": "Strategy", "out": "GrowthModel", "authored": true },
+        { "id": "seo-architect", "role": "Technical SEO, schema, internal linking, content strategy", "in": "GrowthModel", "out": "SEOPlan" },
+        { "id": "content-marketer", "role": "Topic clusters, search-intent maps, distribution pipeline", "in": "SEOPlan", "out": "ContentCalendar" },
+        { "id": "landing-page-strategist", "role": "Hierarchy of needs, social proof, CTA discipline, hero rules", "in": "PRD", "out": "LPSpec" },
+        { "id": "growth-engineer", "role": "Tracking, attribution, funnel instrumentation, no-cookie ID", "in": "GrowthModel", "out": "TrackingPlan" },
+        { "id": "funnel-analyst", "role": "Step-by-step conversion analysis, drop-off forensics", "in": "Telemetry", "out": "FunnelReport" },
+        { "id": "ab-test-engineer", "role": "Power analysis, ramp plan, SRM checks, sequential testing", "in": "Hypothesis", "out": "ExperimentReport" },
+        { "id": "email-sequence-writer", "role": "Lifecycle journeys, segmentation, deliverability", "in": "Persona[]", "out": "SequencePack" },
+        { "id": "social-content-creator", "role": "Platform-native formats, hook engineering, posting cadence", "in": "ContentCalendar", "out": "SocialPosts" },
+        { "id": "lifecycle-marketer", "role": "Activation, engagement, retention, resurrection cohorts", "in": "Telemetry", "out": "LifecycleProgram" }
+      ]
+    },
+    {
+      "id": "support",
+      "name": "Sales / Support",
+      "lead": "customer-lead",
+      "description": "CS, support, evangelism, partners",
+      "agents": [
+        { "id": "customer-lead", "role": "Customer journey, success criteria, escalation matrix", "in": "PRD", "out": "CustomerPlan" },
+        { "id": "sales-engineer", "role": "Technical pre-sales, POC plans, RFP responses, integration scoping", "in": "Lead", "out": "POCPlan" },
+        { "id": "support-engineer", "role": "Tier-2 triage, debugging in production, deflection plays", "in": "Ticket", "out": "Resolution" },
+        { "id": "ticket-triager", "role": "Severity routing, auto-classification, SLA enforcement", "in": "Ticket", "out": "TriageDecision" },
+        { "id": "chatbot-trainer", "role": "Intent design, retrieval store curation, escalation logic", "in": "SupportLogs", "out": "BotConfig" },
+        { "id": "retention-specialist", "role": "Health scores, save plays, expansion signals, NPS interventions", "in": "Telemetry", "out": "RetentionPlays" },
+        { "id": "churn-analyst", "role": "Predictive churn modeling, root causes, intervention design", "in": "Telemetry", "out": "ChurnReport" },
+        { "id": "account-manager", "role": "QBRs, renewal forecasting, expansion roadmap, exec sponsor program", "in": "Account", "out": "AccountPlan" },
+        { "id": "partner-engineer", "role": "Integration kits, certification programs, joint GTM", "in": "PartnerSpec", "out": "PartnerKit" },
+        { "id": "technical-evangelist", "role": "DevRel content, conference talks, sample apps, community AMA", "in": "PRD", "out": "EvangelismPlan" }
+      ]
+    },
+    {
+      "id": "legal",
+      "name": "Legal / Compliance",
+      "lead": "privacy-architect",
+      "description": "Privacy, contracts, IP, AI regulation",
+      "agents": [
+        { "id": "privacy-architect", "role": "Data minimization, purpose limitation, DPIA, vendor mapping", "in": "DataArchitecture", "out": "PrivacyPlan", "authored": true },
+        { "id": "gdpr-mapper", "role": "Article-level control mapping, DSAR runbook, retention schedule", "in": "PrivacyPlan", "out": "GDPRMatrix" },
+        { "id": "hipaa-mapper", "role": "BAAs, PHI inventory, technical/admin/physical safeguards", "in": "PrivacyPlan", "out": "HIPAAMatrix" },
+        { "id": "soc2-prep-lead", "role": "Trust services criteria, evidence repository, audit prep", "in": "SecurityArchitecture", "out": "SOC2Pack" },
+        { "id": "pci-compliance-lead", "role": "SAQ scoping, network segmentation, scanning cadence", "in": "SecurityArchitecture", "out": "PCIPack" },
+        { "id": "tos-writer", "role": "Plain-language terms, liability shaping, enforceability rules", "in": "PRD", "out": "ToS" },
+        { "id": "license-auditor", "role": "OSS license obligations, copyleft risk, attribution generation", "in": "Code", "out": "LicenseReport" },
+        { "id": "contract-reviewer", "role": "Vendor MSAs, data terms, indemnity caps, exit clauses", "in": "Contract", "out": "RedlineSet" },
+        { "id": "ip-strategist", "role": "Patentability triage, prior art search, trade-secret policy", "in": "Invention", "out": "IPPlan" },
+        { "id": "ai-act-mapper", "role": "EU AI Act risk-tier mapping, transparency, conformity assessment", "in": "AIArchitecture", "out": "AIActMatrix" }
+      ]
+    },
+    {
+      "id": "finance",
+      "name": "Finance",
+      "lead": "finance-lead",
+      "description": "Models, billing, fundraising, treasury",
+      "agents": [
+        { "id": "finance-lead", "role": "FP&A cadence, scenario planning, budget vs actual reviews", "in": "Strategy", "out": "FinancePlan" },
+        { "id": "financial-modeler", "role": "Driver-based model, sensitivities, ARR-bridge, cash forecast", "in": "Strategy", "out": "FinancialModel" },
+        { "id": "runway-planner", "role": "Burn analysis, hiring scenarios, funding triggers", "in": "FinancialModel", "out": "RunwayPlan" },
+        { "id": "unit-economics-analyst", "role": "CAC/LTV, gross margin, payback, contribution margin", "in": "Telemetry", "out": "UnitEconomicsReport" },
+        { "id": "fundraising-prep", "role": "Deck logic, data room, narrative arc, term-sheet diligence", "in": "Strategy", "out": "FundraisingPack" },
+        { "id": "cap-table-modeler", "role": "Dilution scenarios, option pool, waterfall, 409A inputs", "in": "FundraisingPack", "out": "CapTableModel" },
+        { "id": "billing-architect", "role": "Plans, metering, proration, dunning, tax engines", "in": "PricingModel", "out": "BillingDesign" },
+        { "id": "subscription-engineer", "role": "Stripe Billing, entitlements, trial logic, grandfathering", "in": "BillingDesign", "out": "SubscriptionCode" },
+        { "id": "revenue-recognition-lead", "role": "ASC 606 mapping, performance obligations, deferred rev schedule", "in": "BillingDesign", "out": "RevRecPolicy" },
+        { "id": "treasury-engineer", "role": "Cash sweep, FX hedging, vendor float, working-capital model", "in": "FinancialModel", "out": "TreasuryPlan" }
+      ]
+    },
+    {
+      "id": "research",
+      "name": "Research",
+      "lead": "research-lead",
+      "description": "Market, user, competitive, academic",
+      "agents": [
+        { "id": "research-lead", "role": "Research strategy, mix of methods, evidence taxonomy", "in": "Question", "out": "ResearchPlan" },
+        { "id": "market-researcher", "role": "Industry sizing, segmentation, demand curve, trend extrapolation", "in": "Question", "out": "MarketReport" },
+        { "id": "competitive-analyst", "role": "Feature matrix, pricing intel, narrative deconstruction, gap finding", "in": "Question", "out": "CompMatrix" },
+        { "id": "user-researcher", "role": "Mixed-methods, ResearchOps, repository hygiene, finding velocity", "in": "Persona[]", "out": "UserInsights" },
+        { "id": "ethnographer", "role": "Field studies, contextual inquiry, behavioral observation, diary studies", "in": "Persona[]", "out": "EthnoNotes" },
+        { "id": "survey-designer", "role": "Item design, scale calibration, MaxDiff, conjoint, weighting", "in": "Question", "out": "SurveyKit" },
+        { "id": "literature-reviewer", "role": "Systematic search, screening, evidence grading, gap synthesis", "in": "Question", "out": "LitReview" },
+        { "id": "patent-researcher", "role": "Claim mapping, freedom-to-operate, prior art landscape", "in": "Invention", "out": "PatentReport" },
+        { "id": "trend-analyst", "role": "Signal mining, weak-signal validation, scenario writing", "in": "Telemetry", "out": "TrendReport" },
+        { "id": "citation-manager", "role": "Source canonicalization, BibTeX/CSL hygiene, dedup, integrity audits", "in": "References", "out": "CitationPack" }
+      ]
+    },
+    {
+      "id": "operations",
+      "name": "Operations",
+      "lead": "ops-lead",
+      "description": "Hiring, project mgmt, processes, knowledge",
+      "agents": [
+        { "id": "ops-lead", "role": "Operating cadence, decision rights, RACI, meeting hygiene", "in": "Strategy", "out": "OpsPlan" },
+        { "id": "hiring-lead", "role": "Job spec, hiring loops, calibration, score-card design", "in": "OpsPlan", "out": "HiringPlan" },
+        { "id": "onboarding-designer", "role": "Week-1 to day-90 plan, paired-shipping, ramp metrics", "in": "HiringPlan", "out": "OnboardingDoc" },
+        { "id": "performance-reviewer", "role": "Calibration, levels, peer feedback synthesis, growth plans", "in": "Telemetry", "out": "ReviewKit" },
+        { "id": "ic-leveling-architect", "role": "Ladder, scope/impact axes, dual-track for IC/manager", "in": "OpsPlan", "out": "LevelingLadder" },
+        { "id": "meeting-facilitator", "role": "Outcome agendas, decision logs, action-item discipline", "in": "MeetingRequest", "out": "MeetingNotes" },
+        { "id": "decision-doc-writer", "role": "Pros/cons, options, recommendation, dissent, owner", "in": "Decision", "out": "DecisionDoc", "authored": true },
+        { "id": "retrospective-facilitator", "role": "Blameless retro, root cause, action items with owners", "in": "Incident", "out": "RetroDoc" },
+        { "id": "project-manager", "role": "Plan, schedule, risks, dependencies, communication", "in": "OpsPlan", "out": "ProjectPlan" },
+        { "id": "knowledge-base-curator", "role": "IA hygiene, redirects, deprecation, single-source-of-truth", "in": "DocsPlan", "out": "KBPlan" }
+      ]
+    },
+    {
+      "id": "specialists",
+      "name": "Specialists (deep verticals)",
+      "lead": "specialist-lead",
+      "description": "Hard domains: blockchain, embedded, robotics, etc.",
+      "agents": [
+        { "id": "specialist-lead", "role": "Domain triage, vendor evaluation, hiring-vs-building decisions", "in": "Question", "out": "DomainPlan" },
+        { "id": "blockchain-engineer", "role": "Solidity, ZK, MEV, gas optimization, audit prep", "in": "PRD", "out": "ContractCode" },
+        { "id": "embedded-engineer", "role": "C/Rust on ARM, RTOS, ISR discipline, OTA update model", "in": "PRD", "out": "FirmwareCode" },
+        { "id": "game-engine-engineer", "role": "Unity/Unreal/Bevy, ECS, scene graph, frame budget", "in": "PRD", "out": "GameCode" },
+        { "id": "robotics-engineer", "role": "ROS2, kinematics, perception, planning, safety envelopes", "in": "PRD", "out": "RobotCode" },
+        { "id": "ar-vr-engineer", "role": "Unity XR/visionOS, hand tracking, anchoring, comfort guidelines", "in": "PRD", "out": "XRCode" },
+        { "id": "bioinformatics-engineer", "role": "Snakemake/Nextflow, BAM/VCF, reproducibility, GxP discipline", "in": "PRD", "out": "BioPipeline" },
+        { "id": "quant-engineer", "role": "Backtesting, slippage modeling, factor research, risk attribution", "in": "PRD", "out": "QuantStrategy" },
+        { "id": "geospatial-engineer", "role": "PostGIS, tile pipelines, raster ops, projection discipline", "in": "PRD", "out": "GeoStack" },
+        { "id": "media-engineer", "role": "FFmpeg, codecs, HLS/DASH, captioning, perceptual quality", "in": "PRD", "out": "MediaPipeline" }
+      ]
+    }
+  ]
+}

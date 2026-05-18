@@ -1,0 +1,30 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    name: Test (Node ${{ matrix.node }} / ${{ matrix.os }})
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        node: [18, 20, 22]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+      - run: npm test
+      - name: Smoke test CLI
+        shell: bash
+        run: |
+          node bin/constellation.mjs --version
+          node bin/constellation.mjs list --teams
+          node bin/constellation.mjs list --formations
+          node bin/constellation.mjs search backend
+          node bin/constellation.mjs pipeline saas-mvp

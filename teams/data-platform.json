@@ -1,0 +1,17 @@
+{
+  "id": "data-platform",
+  "name": "Data platform team",
+  "description": "Stand up an analytics + ML-ready data platform",
+  "agents": [
+    "data-architect", "schema-designer", "etl-engineer", "streaming-engineer",
+    "lakehouse-architect", "data-quality-engineer", "dbt-specialist",
+    "query-optimizer", "lineage-engineer"
+  ],
+  "pipeline": [
+    { "step": "design", "uses": ["data-architect"], "produces": "DataArchitecture" },
+    { "step": "model", "uses": ["schema-designer", "dbt-specialist"], "consumes": "DataArchitecture", "produces": "SchemaDDL" },
+    { "step": "load", "uses": ["etl-engineer", "streaming-engineer"], "consumes": "SchemaDDL", "produces": "PipelineDAG" },
+    { "step": "store", "uses": ["lakehouse-architect"], "consumes": "PipelineDAG", "produces": "LakehouseDesign" },
+    { "step": "trust", "uses": ["data-quality-engineer", "lineage-engineer", "query-optimizer"], "consumes": "LakehouseDesign", "produces": "DataPlatform" }
+  ]
+}
