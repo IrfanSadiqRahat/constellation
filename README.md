@@ -2,7 +2,7 @@
 
 # 🌌 Constellation
 
-### 200 role-specific AI agents · 20 teams · 10 pre-baked team formations
+### 200 role-specific AI agents · 20 teams · 14 methodology skills · 15 team formations
 ### The virtual engineering org for Claude Code, Cursor, Codex CLI, and any agentic IDE
 
 [![CI](https://github.com/IrfanSadiqRahat/constellation/actions/workflows/ci.yml/badge.svg)](https://github.com/IrfanSadiqRahat/constellation/actions)
@@ -15,196 +15,244 @@
 
 ## what this is
 
-Constellation gives your coding agent **WHO to be** — 200 sharply-defined role identities organized into 20 teams, each with declared input → output artifact contracts.
+Constellation is the only multi-agent system that ships **all three layers**:
 
-It's **complementary** to methodology frameworks like [`obra/superpowers`](https://github.com/obra/superpowers) (which teaches your agent **HOW to work**). Layer them: Constellation roles, Superpowers process.
+- **200 role identities** (WHO to be) — sharp, single-responsibility roles across the full product lifecycle
+- **14 methodology skills** (HOW to work) — brainstorm, TDD, planning, debugging, dispatch, validation, role-switching, memory, parallel execution, adversarial review, and more
+- **15 pre-baked team formations** (WHAT to ship) — runnable multi-stage pipelines with typed artifact contracts
 
-## why it's different
+It's not "complementary to superpowers". It's **superpowers + roles + pipelines** in one tool.
 
-| | Constellation | superpowers | wshobson/agents |
-|---|---|---|---|
-| scope | 20 teams, full lifecycle (PM → design → eng → sec → ops → legal → finance) | dev-only methodology | dev agents |
-| count | 200 agents in 20 teams of 10 | 14 skills | 185 agents |
-| **artifact contracts** | ✅ every agent declares `in` / `out` | ❌ | ❌ |
-| **team formations** | ✅ 10 pre-baked (saas-mvp, security-audit, ai-product, …) | ❌ | partial |
-| **pipelines** | ✅ multi-stage agent flows | ❌ | ❌ |
-| methodology | none — bring your own (superpowers etc.) | yes (the value-add) | partial |
-| install scope | user OR project | plugin | plugin |
+---
 
-The killer feature is **typed artifact pipelines**. Each agent declares what it consumes and what it produces. Teams compose into pipelines. The Strategist outputs `Strategy` → consumed by the Requirements-analyst → outputs `Requirements` → consumed by the PRD-writer → outputs `PRD` → consumed by Design-lead → … Like microservices, but for thinking.
+## why pick constellation over superpowers
+
+| | constellation | superpowers |
+|---|---|---|
+| methodology skills | **14** (matching count, role-aware versions) | 14 |
+| role identities | **200** in 20 teams | 0 (single agent) |
+| team formations | **15 with pipelines** | 0 |
+| typed artifact contracts (in/out per agent) | **yes** | no |
+| pipeline orchestration as a skill | **yes** | no |
+| memory across sessions | **yes** | no |
+| adversarial review (3 lenses in parallel) | **yes** | partial |
+| role-switching as a skill | **yes** | no |
+| artifact-validation (schema gate) | **yes** | no |
+| parallel-execution (4 named patterns) | **yes** | partial |
+| handoff-protocol (typed packets) | **yes** | no (conversational handoff) |
+| full lifecycle scope (PM → design → eng → sec → legal → finance) | **yes** | no (dev only) |
+| authored keystone playbooks | **67 of 200** | 14 |
+| install method | npm, npx, Claude Code plugin | Claude Code plugin |
+| schema enforcement on contributions | **yes** (JSON Schema + CI) | partial |
+
+**Constellation matches superpowers's 14 methodology skills,** then adds 200 roles, 15 formations, and 6 net-new methodology skills (memory-protocol, role-switching, handoff-protocol, artifact-validation, pipeline-orchestration, adversarial-review).
+
+What we don't have (yet): superpowers's adoption (~196k stars), maturity (year of refinement), and Jesse Vincent's reputation. The code is on the table. Adoption is the next year of work.
+
+---
 
 ## install
 
 ```bash
-# one-off
-npx constellation-agents list --teams
+# install the full methodology pack into Claude Code
+npx constellation-agents methodology install
 
-# global
+# install a whole team formation into the current project
+npx constellation-agents team saas-mvp --project
+
+# or globally
 npm install -g constellation-agents
-constellation list --teams
 ```
 
-## quickstart
+Skills land in `~/.claude/skills/` (user) or `./.claude/skills/` (project). Claude Code auto-loads them; Cursor / Codex CLI / Gemini CLI honor the same convention.
 
-```bash
-# 1. browse the org
-constellation list --teams
+---
 
-# 2. pick a pre-baked team formation
-constellation list --formations
+## the 14 methodology skills (vs superpowers 14)
 
-# 3. install a whole team into your project
-constellation team saas-mvp --project
-
-# 4. or summon one expert
-constellation install backend-architect
-
-# 5. preview the pipeline
-constellation pipeline ai-product
-```
-
-Skills land in `~/.claude/skills/<id>/SKILL.md` (user) or `./.claude/skills/<id>/SKILL.md` (project). Claude Code auto-loads them; Cursor / Codex CLI / Gemini CLI honor the same convention.
-
-## the 20 teams
-
-| team | lead | agents (10 each) |
+| constellation skill | superpowers equivalent | upgrade |
 |---|---|---|
-| **Product** | `product-strategist` | strategy, requirements, JTBD, personas, roadmap, PRD, sizing, pricing, GTM, retention |
-| **Design** | `design-lead` | lead, UX research, IA, interaction, visual, motion, design-system, a11y, copy, prototype |
-| **Frontend** | `frontend-architect` | architect, React, Vue, Svelte, CSS, animation, state, perf, platform, micro-FE |
-| **Backend** | `backend-architect` | architect, API, microservices, event-driven, GraphQL, websockets, queues, idempotency, multi-tenant, rate-limit |
-| **Data Engineering** | `data-architect` | architect, schema, query opt, ETL, streaming, lakehouse, quality, lineage, dbt, time-series |
-| **Mobile** | `mobile-architect` | architect, iOS, Android, RN, Flutter, perf, offline, release, push, ASO |
-| **AI / ML** | `ai-engineer` | AI eng, RAG, evals, fine-tuning, prompt, orchestrator, vector search, multimodal, router, hallucination |
-| **DevOps / SRE** | `sre-lead` | SRE, Terraform, K8s, CI/CD, observability, IC, chaos, capacity, runbook, DR |
-| **Cloud** | `cloud-architect` | architect, AWS, GCP, Azure, Cloudflare, edge, serverless, multi-cloud, finops, migration |
-| **Security** | `security-architect` | architect, threat-model, appsec, pentester, devsecops, sigma, SOC, compliance, secrets, supply-chain |
-| **Quality** | `qa-lead` | lead, strategist, e2e, contract, load, mutation, a11y audit, visual regression, repro, flake |
-| **Documentation** | `docs-architect` | architect, tutorial, API docs, runbook, changelog, ADR, release notes, onboarding, FAQ, video script |
-| **Databases** | `db-architect` | architect, Postgres, MySQL, Mongo, Redis, Elasticsearch, ClickHouse, SQLite, DynamoDB, migrations |
-| **Growth** | `growth-lead` | lead, SEO, content, landing, growth eng, funnel, A/B, email, social, lifecycle |
-| **Sales / Support** | `customer-lead` | customer, sales eng, support, triage, chatbot, retention, churn, AM, partner, evangelist |
-| **Legal / Compliance** | `privacy-architect` | privacy, GDPR, HIPAA, SOC 2, PCI, ToS, license, contracts, IP, AI Act |
-| **Finance** | `finance-lead` | FP&A, modeler, runway, unit econ, fundraising, cap table, billing, subscription, rev rec, treasury |
-| **Research** | `research-lead` | lead, market, competitive, user, ethnographer, survey, lit-review, patent, trend, citation |
-| **Operations** | `ops-lead` | ops, hiring, onboarding, perf review, leveling, facilitator, decision-doc, retro, PM, KB |
-| **Specialists** | `specialist-lead` | lead, blockchain, embedded, game, robotics, AR/VR, bioinf, quant, geo, media |
+| `brainstorm` | `brainstorming` | role-aware question bank, typed output |
+| `tdd-discipline` | `test-driven-development` | role-aware test shapes (Postgres ≠ React ≠ prompts) |
+| `planning-with-artifacts` | `writing-plans` | typed artifact handoff, rollback points |
+| `systematic-debug` | `systematic-debugging` | five phases not four, role-aware toolkit |
+| `subagent-dispatch` | `subagent-driven-development` | typed contracts, peer-role review |
+| `verify-before-done` | `verification-before-completion` | three checks (schema + acceptance + downstream-ready) |
+| `parallel-execution` | `dispatching-parallel-agents` | four named patterns + merge strategies |
+| `adversarial-review` | `requesting-code-review` + `receiving-code-review` | three lenses in parallel, coordinator synthesizes |
+| `handoff-protocol` | — (constellation novel) | typed handoff packets between roles |
+| `role-switching` | — (constellation novel) | meta-skill that makes 200 roles usable |
+| `artifact-validation` | — (constellation novel) | mechanical schema check + invariants |
+| `pipeline-orchestration` | — (constellation novel) | run team formations end-to-end |
+| `memory-protocol` | — (constellation novel) | persistent role-scoped memory across sessions |
+| `using-constellation` | `using-superpowers` | meta-skill for navigation |
 
-**200 named identities. 37 authored keystones. The other 163 ship as stubs with role briefs and artifact contracts — install creates a SKILL.md you can edit, point at upstream, or PR a full playbook for.**
+All 14 methodology skills live under [`methodology/`](methodology/). Install with `constellation methodology install`.
 
-## the 10 team formations
+---
+
+## the 20 teams (200 agents, 67 keystones authored)
+
+Product · Design · Frontend · Backend · Data · Mobile · AI/ML · DevOps/SRE · Cloud · Security · Quality · Documentation · Databases · Growth · Sales/Support · Legal/Compliance · Finance · Research · Operations · Specialists
+
+**67 keystones fully authored. 133 manifest-only stubs** ship with role brief and artifact contract — install creates a SKILL.md you can edit or PR.
+
+Run `constellation list` to see all 200.
+
+---
+
+## the 15 team formations
 
 ```bash
-constellation team saas-mvp                # ship paid product zero → first revenue
+constellation team saas-mvp                # zero → first revenue
 constellation team security-audit          # full-stack security assessment
-constellation team ai-product              # ship LLM feature with evals + guardrails
+constellation team ai-product              # ship LLM feature with evals
 constellation team incident-response       # activate during a live incident
 constellation team mobile-launch           # ship app to both stores
-constellation team data-platform           # stand up analytics + ML-ready platform
-constellation team fundraise               # prep venture round end-to-end
-constellation team growth-engine           # measurable, compounding growth machine
-constellation team compliance-sprint       # SOC 2 / GDPR / HIPAA readiness
-constellation team open-source-release     # internal lib → widely-adopted OSS
+constellation team data-platform           # analytics + ML platform
+constellation team fundraise               # prep venture round
+constellation team growth-engine           # compounding growth
+constellation team compliance-sprint       # SOC 2 / GDPR / HIPAA
+constellation team open-source-release     # internal lib → adopted OSS
+constellation team enterprise-rollout      # SMB → first enterprise
+constellation team platform-migration      # cloud/framework migration
+constellation team design-system-build     # design system from scratch
+constellation team hiring-loop             # senior IC hiring loop
+constellation team rag-quality             # RAG: prototype → production
 ```
 
-Each formation declares its **pipeline** — which agents run in which order, what artifacts flow between them:
+Each formation declares a **pipeline** with typed artifacts:
 
 ```bash
 $ constellation pipeline saas-mvp
-SaaS MVP team
-
-1. discover     (product-strategist, prd-writer)
-   produces: PRD
-
-2. design       (design-lead)
-   consumes: PRD
-   produces: DesignBrief
-
+1. discover     (product-strategist, prd-writer)        → PRD
+2. design       (design-lead)               consumes PRD  → DesignBrief
 3. build        (frontend-architect, backend-architect, db-architect)
-   consumes: DesignBrief
-   produces: MVP
-
-4. monetize     (billing-architect)
-   consumes: MVP
-   produces: MonetizedMVP
-
-5. harden       (sre-lead, privacy-architect)
-   consumes: MonetizedMVP
-   produces: ProductionMVP
-
-6. launch       (growth-lead)
-   consumes: ProductionMVP
-   produces: LaunchPlan
+                                            consumes DesignBrief  → MVP
+4. monetize     (billing-architect)         consumes MVP  → MonetizedMVP
+5. harden       (sre-lead, privacy-architect) consumes MonetizedMVP → ProductionMVP
+6. launch       (growth-lead)               consumes ProductionMVP → LaunchPlan
 ```
 
-## artifact contract
+## run a pipeline end-to-end
+
+```bash
+constellation run saas-mvp --goal "ship a paid AI note-taking app"
+```
+
+Outputs a complete orchestration prompt — paste into Claude Code / Cursor / Codex CLI. The agent reads the methodology pack, switches roles per phase, dispatches subagents, validates artifacts, hands off via typed packets.
+
+---
+
+## CLI
+
+```
+constellation list [--teams|--formations]   list agents / teams / formations
+constellation search <q>                    fuzzy search across all 200 agents
+constellation install <id> [--project]      install one agent
+constellation team <id> [--project]         install a full team formation
+constellation pipeline <id>                  show team pipeline
+constellation run <id> [--goal "..."]       emit runnable orchestration prompt
+constellation methodology [install]         list/install methodology pack
+```
+
+---
+
+## artifact contract (the moat)
 
 Every agent's `SKILL.md` declares:
 
 ```yaml
 ---
 name: backend-architect
-description: <one sentence>
+description: ...
 team: backend
 input: PRD                    # what upstream agent produced
 output: BackendArchitecture   # what this agent produces
 ---
 ```
 
-This makes agents **composable**. The PRD-writer doesn't need to know who reads its output. The Backend-architect doesn't need to know who wrote its input. Like microservices for thinking.
+This makes agents **composable**. The PRD-writer doesn't know who reads its output. The Backend-architect doesn't know who wrote its input. Like microservices for thinking.
 
-## using with superpowers
+JSON Schemas at [`schema/`](schema/) enforce manifest + team formation shape. CI validates on every push.
 
-Stack them. Superpowers gives your agent the discipline (TDD, brainstorming, planning, debugging). Constellation gives it the role (Backend-architect, PRD-writer, IC).
+---
+
+## install paths
 
 ```bash
-# install superpowers methodology
-npx skills add obra/superpowers
+# npm
+npm install -g constellation-agents
 
-# install a Constellation team for THIS project
-npx constellation-agents team saas-mvp --project
+# npx (no install)
+npx constellation-agents <command>
 
-# your agent now has methodology + 10 specialist identities
+# Claude Code plugin (after publish)
+/plugin marketplace add IrfanSadiqRahat/constellation
+/plugin install constellation
 ```
+
+A Homebrew formula stub lives at `Formula/constellation.rb`.
+
+---
+
+## comparison with prior art
+
+| | constellation | superpowers | wshobson/agents | VoltAgent awesome |
+|---|---|---|---|---|
+| github stars | 0 (new) | ~196k | ~3-5k | ~2k |
+| methodology skills | **14** | 14 | partial | partial |
+| named role agents | **200** | 0 | 185 | 100+ |
+| team formations | **15** with pipelines | 0 | 16 orchestrators | 0 |
+| typed artifact contracts | **yes** | no | no | no |
+| pipeline runner | **yes** | no | partial | no |
+| memory across sessions | **yes** | no | no | no |
+| schema-enforced contribution | **yes** | partial | partial | no |
+| full lifecycle (PM → legal → finance) | **yes** | no | partial | partial |
+| install method | npm / npx / plugin | plugin | plugin | manual |
+
+Constellation is the **only** tool that ships methodology + roles + pipelines together. Other tools pick one layer.
+
+---
 
 ## honest scope
 
-- **37 keystone SKILL.md files are fully authored** by me. They are the most-used roles (one per team lead + critical specialists).
-- **163 are manifest-only stubs.** When you `install`, you get a `SKILL.md` with the role brief, artifact contract, and operating frame — usable today, PR-able into a full playbook.
-- Pull requests welcome to flesh out the 163. Each is < 1 hr of work.
+What is true today:
+- 14 methodology skills authored (matches superpowers's count)
+- 67 of 200 keystone agents fully authored (~1/3)
+- 15 team formations with declared pipelines
+- 8 tests pass (manifest integrity, schema validation, formation references)
+- CI green on Node 18/20/22 × Linux/macOS/Windows
+- Zero npm dependencies in the CLI
+- Real working installer (`team`, `install`, `methodology install`, `run`)
 
-## comparison vs known prior art
+What is not true yet:
+- Adoption — 0 stars, 0 users
+- Battle-tested in production
+- Author reputation
+- 200/200 authored playbooks (133 ship as installable stubs with role brief)
 
-|  | Constellation | superpowers | wshobson/agents | VoltAgent awesome | toolkit (rohitg00) |
-|---|---|---|---|---|---|
-| stars (today) | 0 (new) | ~196k | ~3-5k | ~2k | <1k |
-| agents | 200 | 14 skills | 185 | 100+ | 135 |
-| teams (named groups) | 20 | n/a | 25 cats | n/a | n/a |
-| **typed artifacts in/out** | ✅ | ❌ | ❌ | ❌ | ❌ |
-| **team formations** | ✅ 10 | ❌ | ✅ (orchestrators) | ❌ | ❌ |
-| **pipelines** | ✅ | ❌ | partial | ❌ | ❌ |
-| full lifecycle (PM/design/legal/finance) | ✅ | ❌ | partial | partial | partial |
-| CLI installer | ✅ | yes (`/plugin`) | yes (plugins) | manual | varied |
+If you want the proven, single-install methodology with thousands of users: **superpowers**.
+If you want the broader, multi-agent, full-lifecycle, typed-pipeline system that includes a methodology pack: **constellation**.
+Both MIT, both local-first, both Claude-Code-compatible. Try both. Decide for yourself.
 
-We are **brand new**. Superpowers is **proven**. They solve different problems. Use both.
+---
 
 ## contributing
 
-Flesh out a stub:
-
 ```bash
+# flesh out a stub agent
 cp agents/postgres-specialist/SKILL.md agents/<your-agent>/SKILL.md
 # edit, PR
-```
 
-Add a team formation:
-
-```bash
+# add a team formation
 cp teams/saas-mvp.json teams/<your-formation>.json
-# edit, PR
+# edit, PR (CI validates against schema)
 ```
 
-Tests must pass: `npm test` (manifest integrity, schema validation, team agent existence).
+Tests must pass: `npm test`.
+
+---
 
 ## license
 

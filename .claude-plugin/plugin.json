@@ -1,0 +1,15 @@
+{
+  "name": "constellation",
+  "version": "0.2.0",
+  "description": "200 role-specific AI agents in 20 teams with typed artifact pipelines and 14 methodology skills. Complementary to obra/superpowers.",
+  "author": "Irfan Sadiq Rahat",
+  "license": "MIT",
+  "homepage": "https://github.com/IrfanSadiqRahat/constellation",
+  "skills": {
+    "agents": "../agents",
+    "methodology": "../methodology"
+  },
+  "commands": {
+    "constellation": "../bin/constellation.mjs"
+  }
+}

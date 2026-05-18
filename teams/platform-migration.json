@@ -1,0 +1,16 @@
+{
+  "id": "platform-migration",
+  "name": "Platform migration team",
+  "description": "Migrate stack (cloud, framework, or DB engine) with zero downtime",
+  "agents": [
+    "cloud-architect", "backend-architect", "db-architect", "migration-planner",
+    "sre-lead", "observability-engineer", "ci-cd-engineer", "incident-commander"
+  ],
+  "pipeline": [
+    { "step": "assess", "uses": ["cloud-architect", "backend-architect"], "produces": "MigrationAssessment" },
+    { "step": "plan", "uses": ["migration-planner", "db-architect"], "consumes": "MigrationAssessment", "produces": "MigrationPlan" },
+    { "step": "instrument", "uses": ["observability-engineer", "ci-cd-engineer"], "consumes": "MigrationPlan", "produces": "MigrationDashboards" },
+    { "step": "execute", "uses": ["sre-lead", "migration-planner"], "consumes": "MigrationDashboards", "produces": "MigrationRun" },
+    { "step": "guard", "uses": ["incident-commander"], "consumes": "MigrationRun", "produces": "CutoverReport" }
+  ]
+}

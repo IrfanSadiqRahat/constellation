@@ -188,27 +188,114 @@ async function cmdPipeline(name) {
   }
 }
 
+async function cmdRun(name, opts) {
+  const team = await loadTeam(name);
+  if (!team) { console.error(`${C.red("✗")} Unknown formation: ${name}`); process.exit(1); }
+  const goal = opts.goal ?? "<describe your goal here>";
+
+  const prompt = `You are about to execute the **${team.name}** pipeline.
+
+## Goal
+${goal}
+
+## Pipeline
+
+${(team.pipeline ?? []).map((step, i) => {
+  const lens = step.uses.join(", ");
+  return `### Phase ${i + 1}: ${step.step}
+**Roles:** ${lens}
+${step.consumes ? `**Consumes:** \`${step.consumes}\`` : ""}
+**Produces:** \`${step.produces}\`
+**Required reading:** ${step.uses.map((u) => `\`agents/${u}/SKILL.md\``).join(", ")}`;
+}).join("\n\n")}
+
+## Methodology contract
+
+For each phase, in order:
+
+1. \`role-switching\` — adopt the phase's role(s)
+2. \`brainstorm\` — refine consumed artifact into a ScopedBrief for this phase
+3. \`planning-with-artifacts\` — produce a Plan with 2–5 min tasks
+4. \`tdd-discipline\` — write tests/evals FIRST when code is involved
+5. \`subagent-dispatch\` — execute the plan; one subagent per task
+6. \`parallel-execution\` — fan out when phase has multiple roles
+7. \`artifact-validation\` — schema check on the produced artifact
+8. \`verify-before-done\` — acceptance criteria + downstream readiness
+9. \`handoff-protocol\` — emit HandoffPacket for the next phase
+10. Checkpoint to \`.constellation/checkpoints/<run-id>/phase-${"${i}"}.yaml\`
+
+Reference: each methodology skill lives in \`methodology/<name>/SKILL.md\`.
+
+## Begin
+
+Start Phase 1. Announce the role-switch, then proceed.
+`;
+
+  if (opts.json) {
+    console.log(JSON.stringify({ formation: team.id, goal, prompt }, null, 2));
+    return;
+  }
+  console.log(prompt);
+  console.error(`\n${C.dim("Paste the above prompt into Claude Code / Cursor / Codex CLI to run the pipeline.")}`);
+}
+
+async function cmdMethodology(args) {
+  const dir = join(ROOT, "methodology");
+  const entries = await readdir(dir);
+  const skills = [];
+  for (const e of entries) {
+    const md = join(dir, e, "SKILL.md");
+    if (existsSync(md)) skills.push({ id: e, path: md });
+  }
+  if (args.includes("install")) {
+    const scope = args.includes("--project") ? "project" : "user";
+    for (const s of skills) {
+      const content = await readFile(s.path, "utf8");
+      const dest = skillDest(scope, s.id);
+      await mkdir(dest, { recursive: true });
+      await writeFile(join(dest, "SKILL.md"), content);
+      console.log(`${C.green("✓")} ${s.id}`);
+    }
+    console.log(`\n${C.dim(`Installed ${skills.length} methodology skill(s) → ${skillDest(scope, "")}`)}`);
+    return;
+  }
+  console.log(`${C.bold("Methodology pack")} (${skills.length} skills)\n`);
+  for (const s of skills) {
+    const content = await readFile(s.path, "utf8");
+    const desc = (content.match(/description:\s*(.+)/) ?? [])[1] ?? "";
+    console.log(`  ${C.cyan(s.id.padEnd(28))} ${C.dim(desc.slice(0, 80))}`);
+  }
+  console.log(`\n${C.dim("Install all: constellation methodology install [--project]")}`);
+}
+
 function help() {
-  console.log(`${C.cyan("constellation")} — 200 role-specific agents in 20 teams\n`);
+  console.log(`${C.cyan("constellation")} — 200 role-specific agents · 20 teams · 14 methodology skills\n`);
   console.log("Usage:");
   console.log(`  ${C.cyan("constellation list")} [--teams|--formations]   list agents / teams / formations`);
   console.log(`  ${C.cyan("constellation search <q>")}                    fuzzy search agents`);
   console.log(`  ${C.cyan("constellation install <id>")} [--project]      install one agent`);
   console.log(`  ${C.cyan("constellation team <id>")} [--project]         install a full team formation`);
   console.log(`  ${C.cyan("constellation pipeline <id>")}                  show team pipeline`);
+  console.log(`  ${C.cyan("constellation run <id>")} [--goal "..."]       emit runnable orchestration prompt`);
+  console.log(`  ${C.cyan("constellation methodology")} [install]         list/install methodology pack`);
   console.log(`  ${C.cyan("constellation --help")}                         this help`);
   console.log();
   console.log("Examples:");
-  console.log(`  constellation list --teams`);
-  console.log(`  constellation team saas-mvp`);
-  console.log(`  constellation install backend-architect --project`);
+  console.log(`  constellation methodology install`);
+  console.log(`  constellation team saas-mvp --project`);
+  console.log(`  constellation run security-audit --goal "audit our /api/v2 endpoints"`);
   console.log(`  constellation pipeline ai-product`);
 }
 
 const argv = process.argv.slice(2);
 const cmd = argv[0];
-const opts = { scope: argv.includes("--project") ? "project" : "user" };
-const args = argv.filter((a) => !a.startsWith("--"));
+const goalIdx = argv.indexOf("--goal");
+const opts = {
+  scope: argv.includes("--project") ? "project" : "user",
+  goal: goalIdx >= 0 ? argv[goalIdx + 1] : undefined,
+  json: argv.includes("--json"),
+};
+const args = argv.filter((a, i) => !a.startsWith("--") && argv[i - 1] !== "--goal");
 
 (async () => {
   try {
@@ -223,6 +310,8 @@ const args = argv.filter((a) => !a.startsWith("--"));
     if (cmd === "install" || cmd === "i" || cmd === "add") return cmdInstall(args[1], opts);
     if (cmd === "team" || cmd === "t") return cmdTeam(args[1], opts);
     if (cmd === "pipeline" || cmd === "p") return cmdPipeline(args[1]);
+    if (cmd === "run" || cmd === "r") return cmdRun(args[1], opts);
+    if (cmd === "methodology" || cmd === "m") return cmdMethodology(argv);
     console.error(`${C.red("✗")} Unknown command: ${cmd}`);
     help();
     process.exit(1);

@@ -50,4 +50,16 @@ describe("schema", () => {
     const errs = validate(schema, schema, data, "$");
     assert.deepEqual(errs, [], errs.join("\n"));
   });
+
+  it("every team formation passes team.schema.json", async () => {
+    const schema = JSON.parse(await readFile("schema/team.schema.json", "utf8"));
+    const { readdir } = await import("node:fs/promises");
+    const files = await readdir("teams");
+    for (const f of files) {
+      if (!f.endsWith(".json")) continue;
+      const data = JSON.parse(await readFile(`teams/${f}`, "utf8"));
+      const errs = validate(schema, schema, data, f);
+      assert.deepEqual(errs, [], `${f}: ${errs.join("\n")}`);
+    }
+  });
 });

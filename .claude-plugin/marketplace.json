@@ -1,0 +1,11 @@
+{
+  "name": "constellation",
+  "description": "200 role-specific AI agents · 20 teams · 14 methodology skills · 15 team formations",
+  "plugins": [
+    {
+      "name": "constellation",
+      "source": ".",
+      "description": "The virtual engineering org for Claude Code. Roles + methodology + pipelines."
+    }
+  ]
+}

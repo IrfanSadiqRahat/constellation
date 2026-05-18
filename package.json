@@ -1,6 +1,6 @@
 {
   "name": "constellation-agents",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "200 role-specific AI agents in 20 teams, with typed artifact pipelines. The virtual engineering org for Claude Code, Cursor, Codex CLI, and any agentic IDE.",
   "type": "module",
   "bin": {

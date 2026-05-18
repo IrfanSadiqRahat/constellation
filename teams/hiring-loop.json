@@ -1,0 +1,15 @@
+{
+  "id": "hiring-loop",
+  "name": "Hiring loop team",
+  "description": "Design + run a calibrated hiring loop for a senior IC role",
+  "agents": [
+    "hiring-lead", "ops-lead", "ic-leveling-architect", "onboarding-designer",
+    "performance-reviewer", "meeting-facilitator"
+  ],
+  "pipeline": [
+    { "step": "spec", "uses": ["hiring-lead", "ic-leveling-architect"], "produces": "RoleSpec" },
+    { "step": "loop", "uses": ["hiring-lead", "ops-lead"], "consumes": "RoleSpec", "produces": "InterviewLoop" },
+    { "step": "calibrate", "uses": ["meeting-facilitator", "performance-reviewer"], "consumes": "InterviewLoop", "produces": "CalibrationPlan" },
+    { "step": "onboard", "uses": ["onboarding-designer"], "consumes": "CalibrationPlan", "produces": "OnboardingDoc" }
+  ]
+}

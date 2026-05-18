@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/IrfanSadiqRahat/constellation/blob/main/schema/team.schema.json",
+  "title": "Constellation team formation",
+  "type": "object",
+  "required": ["id", "name", "description", "agents", "pipeline"],
+  "additionalProperties": false,
+  "properties": {
+    "id": { "type": "string", "pattern": "^[a-z][a-z0-9-]{1,40}$" },
+    "name": { "type": "string" },
+    "description": { "type": "string" },
+    "agents": { "type": "array", "minItems": 2, "items": { "type": "string" } },
+    "pipeline": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["step", "uses", "produces"],
+        "additionalProperties": false,
+        "properties": {
+          "step": { "type": "string" },
+          "uses": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+          "consumes": { "type": "string" },
+          "produces": { "type": "string" },
+          "parallel": { "type": "string", "enum": ["map", "fan_out", "adversarial", "race"] }
+        }
+      }
+    }
+  }
+}

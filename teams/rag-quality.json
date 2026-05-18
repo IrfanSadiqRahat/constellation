@@ -1,0 +1,16 @@
+{
+  "id": "rag-quality",
+  "name": "RAG quality team",
+  "description": "Take a RAG system from prototype to production-grade with measurable quality",
+  "agents": [
+    "ai-engineer", "rag-architect", "vector-search-engineer", "eval-engineer",
+    "hallucination-auditor", "prompt-engineer", "data-quality-engineer", "privacy-architect"
+  ],
+  "pipeline": [
+    { "step": "audit", "uses": ["rag-architect", "vector-search-engineer"], "produces": "RAGAudit" },
+    { "step": "evals", "uses": ["eval-engineer", "hallucination-auditor"], "consumes": "RAGAudit", "produces": "EvalSuite" },
+    { "step": "tune", "uses": ["rag-architect", "prompt-engineer"], "consumes": "EvalSuite", "produces": "TunedRAGPipeline" },
+    { "step": "data-quality", "uses": ["data-quality-engineer"], "consumes": "TunedRAGPipeline", "produces": "DataQualityReport" },
+    { "step": "ship", "uses": ["ai-engineer", "privacy-architect"], "consumes": "DataQualityReport", "produces": "ProductionRAG" }
+  ]
+}

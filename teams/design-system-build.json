@@ -1,0 +1,16 @@
+{
+  "id": "design-system-build",
+  "name": "Design system build team",
+  "description": "Stand up a real, governable design system from scratch",
+  "agents": [
+    "design-lead", "visual-designer", "design-system-architect", "accessibility-specialist",
+    "frontend-architect", "react-specialist", "css-architect", "docs-architect"
+  ],
+  "pipeline": [
+    { "step": "principles", "uses": ["design-lead"], "produces": "DesignBrief" },
+    { "step": "language", "uses": ["visual-designer"], "consumes": "DesignBrief", "produces": "VisualLanguage" },
+    { "step": "system", "uses": ["design-system-architect", "accessibility-specialist"], "consumes": "VisualLanguage", "produces": "DesignSystem" },
+    { "step": "implement", "uses": ["frontend-architect", "react-specialist", "css-architect"], "consumes": "DesignSystem", "produces": "ComponentLibrary" },
+    { "step": "document", "uses": ["docs-architect"], "consumes": "ComponentLibrary", "produces": "DesignSystemDocs" }
+  ]
+}

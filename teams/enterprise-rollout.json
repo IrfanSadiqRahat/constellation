@@ -1,0 +1,15 @@
+{
+  "id": "enterprise-rollout",
+  "name": "Enterprise rollout team",
+  "description": "Take a product from SMB to first enterprise customer (SSO, audit, SLA)",
+  "agents": [
+    "security-architect", "compliance-mapper", "soc2-prep-lead", "privacy-architect",
+    "sre-lead", "billing-architect", "customer-lead", "sales-engineer", "contract-reviewer"
+  ],
+  "pipeline": [
+    { "step": "harden", "uses": ["security-architect", "soc2-prep-lead", "privacy-architect"], "produces": "EnterpriseReadinessPack" },
+    { "step": "operate", "uses": ["sre-lead"], "consumes": "EnterpriseReadinessPack", "produces": "SLOCommitments" },
+    { "step": "contract", "uses": ["billing-architect", "contract-reviewer"], "consumes": "SLOCommitments", "produces": "EnterpriseMSAKit" },
+    { "step": "onboard", "uses": ["customer-lead", "sales-engineer"], "consumes": "EnterpriseMSAKit", "produces": "OnboardingRunbook" }
+  ]
+}
