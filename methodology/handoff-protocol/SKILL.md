@@ -45,10 +45,6 @@ next_step: <what the consumer should do first>
 
 Multi-agent systems fail when handoffs are conversational. Constellation's typed contracts only work if the handoff packet itself is typed. This skill enforces it.
 
-## Novel to Constellation
-
-Superpowers has no equivalent. Their model is single-agent with subagent dispatch where parent agent maintains context. Constellation's model is multi-role pipeline where context is in the artifacts, not in any single agent.
-
 ## Storage
 
 Handoff packets live in `.constellation/handoffs/<timestamp>-<artifact_id>.yaml`. The team workspace is a chain of these. Auditable, replayable, forkable.

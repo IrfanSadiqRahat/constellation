@@ -15,39 +15,11 @@
 
 ## what this is
 
-Constellation is the only multi-agent system that ships **all three layers**:
+Constellation is a multi-agent system that ships **all three layers** in one tool:
 
 - **200 role identities** (WHO to be) — sharp, single-responsibility roles across the full product lifecycle
 - **14 methodology skills** (HOW to work) — brainstorm, TDD, planning, debugging, dispatch, validation, role-switching, memory, parallel execution, adversarial review, and more
 - **15 pre-baked team formations** (WHAT to ship) — runnable multi-stage pipelines with typed artifact contracts
-
-It's not "complementary to superpowers". It's **superpowers + roles + pipelines** in one tool.
-
----
-
-## why pick constellation over superpowers
-
-| | constellation | superpowers |
-|---|---|---|
-| methodology skills | **14** (matching count, role-aware versions) | 14 |
-| role identities | **200** in 20 teams | 0 (single agent) |
-| team formations | **15 with pipelines** | 0 |
-| typed artifact contracts (in/out per agent) | **yes** | no |
-| pipeline orchestration as a skill | **yes** | no |
-| memory across sessions | **yes** | no |
-| adversarial review (3 lenses in parallel) | **yes** | partial |
-| role-switching as a skill | **yes** | no |
-| artifact-validation (schema gate) | **yes** | no |
-| parallel-execution (4 named patterns) | **yes** | partial |
-| handoff-protocol (typed packets) | **yes** | no (conversational handoff) |
-| full lifecycle scope (PM → design → eng → sec → legal → finance) | **yes** | no (dev only) |
-| authored keystone playbooks | **67 of 200** | 14 |
-| install method | npm, npx, Claude Code plugin | Claude Code plugin |
-| schema enforcement on contributions | **yes** (JSON Schema + CI) | partial |
-
-**Constellation matches superpowers's 14 methodology skills,** then adds 200 roles, 15 formations, and 6 net-new methodology skills (memory-protocol, role-switching, handoff-protocol, artifact-validation, pipeline-orchestration, adversarial-review).
-
-What we don't have (yet): superpowers's adoption (~196k stars), maturity (year of refinement), and Jesse Vincent's reputation. The code is on the table. Adoption is the next year of work.
 
 ---
 
@@ -68,24 +40,24 @@ Skills land in `~/.claude/skills/` (user) or `./.claude/skills/` (project). Clau
 
 ---
 
-## the 14 methodology skills (vs superpowers 14)
+## the 14 methodology skills
 
-| constellation skill | superpowers equivalent | upgrade |
-|---|---|---|
-| `brainstorm` | `brainstorming` | role-aware question bank, typed output |
-| `tdd-discipline` | `test-driven-development` | role-aware test shapes (Postgres ≠ React ≠ prompts) |
-| `planning-with-artifacts` | `writing-plans` | typed artifact handoff, rollback points |
-| `systematic-debug` | `systematic-debugging` | five phases not four, role-aware toolkit |
-| `subagent-dispatch` | `subagent-driven-development` | typed contracts, peer-role review |
-| `verify-before-done` | `verification-before-completion` | three checks (schema + acceptance + downstream-ready) |
-| `parallel-execution` | `dispatching-parallel-agents` | four named patterns + merge strategies |
-| `adversarial-review` | `requesting-code-review` + `receiving-code-review` | three lenses in parallel, coordinator synthesizes |
-| `handoff-protocol` | — (constellation novel) | typed handoff packets between roles |
-| `role-switching` | — (constellation novel) | meta-skill that makes 200 roles usable |
-| `artifact-validation` | — (constellation novel) | mechanical schema check + invariants |
-| `pipeline-orchestration` | — (constellation novel) | run team formations end-to-end |
-| `memory-protocol` | — (constellation novel) | persistent role-scoped memory across sessions |
-| `using-constellation` | `using-superpowers` | meta-skill for navigation |
+| skill | what it does |
+|---|---|
+| `brainstorm` | Refine vague intent into a concrete typed brief before any work begins. Role-aware question banks. |
+| `tdd-discipline` | Role-aware TDD. No production code without a failing test first. Test shape differs by role. |
+| `planning-with-artifacts` | Break work into 2–5 min tasks with typed artifact handoffs and rollback points. |
+| `systematic-debug` | Five-phase root cause process with role-aware diagnostics. |
+| `subagent-dispatch` | Fresh subagent per task with typed-contract briefing and two-stage review. |
+| `verify-before-done` | Three checks: schema valid, acceptance criteria met, downstream readiness. |
+| `parallel-execution` | Four named patterns (map, fan-out, adversarial, race) with declared merge strategies. |
+| `adversarial-review` | Three reviewer lenses (quality, security, performance) in parallel; coordinator synthesizes. |
+| `handoff-protocol` | Pass typed artifacts between roles via structured packets. |
+| `role-switching` | When and how to swap which role the agent is playing. |
+| `artifact-validation` | Mechanical schema + invariant checks on every produced artifact. |
+| `pipeline-orchestration` | Drive a team formation end-to-end with role switching, validation, and rollback. |
+| `memory-protocol` | Persistent role-scoped notes across sessions. |
+| `using-constellation` | Meta-skill for navigating the system. |
 
 All 14 methodology skills live under [`methodology/`](methodology/). Install with `constellation methodology install`.
 
@@ -196,45 +168,16 @@ A Homebrew formula stub lives at `Formula/constellation.rb`.
 
 ---
 
-## comparison with prior art
+## what ships today
 
-| | constellation | superpowers | wshobson/agents | VoltAgent awesome |
-|---|---|---|---|---|
-| github stars | 0 (new) | ~196k | ~3-5k | ~2k |
-| methodology skills | **14** | 14 | partial | partial |
-| named role agents | **200** | 0 | 185 | 100+ |
-| team formations | **15** with pipelines | 0 | 16 orchestrators | 0 |
-| typed artifact contracts | **yes** | no | no | no |
-| pipeline runner | **yes** | no | partial | no |
-| memory across sessions | **yes** | no | no | no |
-| schema-enforced contribution | **yes** | partial | partial | no |
-| full lifecycle (PM → legal → finance) | **yes** | no | partial | partial |
-| install method | npm / npx / plugin | plugin | plugin | manual |
-
-Constellation is the **only** tool that ships methodology + roles + pipelines together. Other tools pick one layer.
-
----
-
-## honest scope
-
-What is true today:
-- 14 methodology skills authored (matches superpowers's count)
+- 14 methodology skills authored
 - 67 of 200 keystone agents fully authored (~1/3)
 - 15 team formations with declared pipelines
 - 8 tests pass (manifest integrity, schema validation, formation references)
 - CI green on Node 18/20/22 × Linux/macOS/Windows
 - Zero npm dependencies in the CLI
 - Real working installer (`team`, `install`, `methodology install`, `run`)
-
-What is not true yet:
-- Adoption — 0 stars, 0 users
-- Battle-tested in production
-- Author reputation
-- 200/200 authored playbooks (133 ship as installable stubs with role brief)
-
-If you want the proven, single-install methodology with thousands of users: **superpowers**.
-If you want the broader, multi-agent, full-lifecycle, typed-pipeline system that includes a methodology pack: **constellation**.
-Both MIT, both local-first, both Claude-Code-compatible. Try both. Decide for yourself.
+- 133 manifest-only stubs ship with role brief and artifact contract — installable today, PR-able to full playbooks
 
 ---
 

@@ -50,11 +50,9 @@ Constellation has overhead. Don't use it for "rename this variable". Use it when
 - **Stale memory** — start a session by reading `.constellation/memory/<project>/<role>/`
 - **Over-using parallel** — three parallel agents on a 30-second task is wasted coordination
 
-## How Constellation relates to other frameworks
+## How Constellation relates to MCP
 
-- **superpowers** — methodology for a single agent. Layer it inside your role.
-- **wshobson/agents** — flat catalog. Constellation's roles are sharper; their stubs can be cherry-picked.
-- **MCP servers** — tool surface. Roles call tools; Constellation manages identity.
+- **MCP servers** — tool surface. Roles call tools; Constellation manages role identity, methodology, and pipelines. Use both layers together.
 
 ## Meta-skill
 

@@ -56,6 +56,6 @@ Pipeline runs are resumable, replayable, and forkable.
 
 Unstructured prompts produce drift. The orchestrator wraps every phase in the same envelope: role-switch → plan → dispatch → validate → handoff. The user sees a clean progression; the agent stays disciplined.
 
-## Novel to Constellation
+## Why this matters
 
-Superpowers can dispatch subagents but doesn't formalize multi-phase pipelines with typed artifacts as the bus. This skill is what makes a 200-agent system actually executable end-to-end.
+Formalizing multi-phase pipelines with typed artifacts as the bus is what makes a 200-agent system actually executable end-to-end.

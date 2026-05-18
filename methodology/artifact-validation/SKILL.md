@@ -61,6 +61,6 @@ overall: pass | fail
 
 `artifact-validation` is mechanical — runs as a tool. Each artifact type has a validator under `tools/validators/<type>.mjs`. Adding a type means adding a validator and the artifact catalog gets richer.
 
-## Novel to Constellation
+## Why this matters
 
-Superpowers has informal "verification-before-completion" — Constellation's `artifact-validation` is a real automated gate, like a type-checker for thinking outputs. This is the difference between "we agree it looks done" and "the schema checker says it's done".
+This is an automated gate, like a type-checker for thinking outputs. The difference between "we agree it looks done" and "the schema checker says it's done".

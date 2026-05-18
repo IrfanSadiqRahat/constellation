@@ -54,7 +54,7 @@ P6: launch      role=growth-lead                     →LaunchPlan
 
 Each phase contains the role-specific task taxonomy.
 
-## Beats superpowers's `writing-plans` by
+## Why this skill is opinionated
 
 - **Typed artifact handoff** between phases — no tribal context loss
 - **Role-aware task taxonomy** — frontend tasks look different from data tasks

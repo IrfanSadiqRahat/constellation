@@ -50,7 +50,7 @@ If either review fails, dispatch again with the failure as additional briefing. 
 - **No tool access not needed for this task.** Reduces blast radius.
 - **Output schema enforced.** Free-form output is the enemy.
 
-## Beats superpowers's `subagent-driven-development` by
+## Why this skill is opinionated
 
 - **Typed artifact contracts** — review stage 1 is mechanical, not subjective
 - **Fan-out + merge pattern** — multiple agents same problem, vote-merge

@@ -47,6 +47,6 @@ Ask: "What artifact am I producing? Which role's output is that?" The role with 
 
 If no role produces it → maybe it's not a real artifact. Maybe it's vague. Go to `brainstorm` first.
 
-## Novel to Constellation
+## Why this matters
 
 This skill is the connective tissue that makes a 200-role system practical. Without it, 200 roles is a confusing list. With it, the agent has a deterministic way to pick the right hat for each step.

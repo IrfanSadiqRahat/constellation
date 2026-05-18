@@ -53,8 +53,4 @@ End of session OR on confirmed decision:
 
 ## Why this matters
 
-Superpowers's value compounds within a session. Constellation's value compounds across sessions. After a month, the backend-architect "knows" your repo. After a year, the security-architect remembers every threat-model decision and their outcomes.
-
-## Novel to Constellation
-
-Superpowers and most agent frameworks are stateless across sessions. The memory protocol is a key differentiator — Constellation gets more useful the longer you use it.
+Constellation's value compounds across sessions. After a month, the backend-architect "knows" your repo. After a year, the security-architect remembers every threat-model decision and its outcomes. Constellation gets more useful the longer you use it.

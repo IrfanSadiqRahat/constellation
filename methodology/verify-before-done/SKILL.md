@@ -84,9 +84,9 @@ Each role declares smell-checks in its SKILL.md. `verify-before-done` runs them:
 | `prompt-engineer` | prompts > 4k tokens without reason |
 | `migration-planner` | `ALTER TABLE ... ADD COLUMN NOT NULL DEFAULT` on large table |
 
-## Beats superpowers's `verification-before-completion` by
+## Why this skill is opinionated
 
-- **Three checks not one** — schema, acceptance, downstream-readiness separately
+- **Three checks** — schema, acceptance, downstream-readiness separately
 - **Evidence required**, not claims
 - **Role-aware smell-checks** — each role's playbook drives quality gates
 - **Downstream-readiness** is a first-class check — does the NEXT role have what they need?

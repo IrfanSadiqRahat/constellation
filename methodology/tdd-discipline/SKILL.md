@@ -48,7 +48,7 @@ The role's `output` artifact has a corresponding test family. No exceptions.
 - Tests that re-implement the production code = tests of nothing
 - Snapshot tests as the primary mechanism = test of opinion drift
 
-## Beats superpowers's `test-driven-development` by
+## Why this skill is opinionated
 
 - **Role-aware test shape** — different artifacts need different tests
 - **Iron law enforced per role**, not per language

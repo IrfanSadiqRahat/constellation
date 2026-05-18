@@ -50,8 +50,8 @@ Brainstorm modulates based on which role the agent will play next:
 | `ai-engineer` | Latency budget? Quality floor? Cost ceiling? |
 | `growth-lead` | North star? Loop type? Cycle time? |
 
-## Beats superpowers's `brainstorming` by
+## Why this skill is opinionated
 
-- **Role-aware question banks** — five questions tailored to next agent, not generic
+- **Role-aware question banks** — five questions tailored to the next agent, not generic
 - **Typed handoff** — `recommended_next_artifact` makes the chain explicit
-- **Numeric success criteria mandatory** — not just "explore alternatives"
+- **Numeric success criteria mandatory** — vague goals get rejected at the brief stage

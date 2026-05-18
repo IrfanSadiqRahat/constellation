@@ -64,8 +64,8 @@ recommendation: merge | revise | redesign
 
 Three reviewers cost 3× a single reviewer. Use accordingly.
 
-## Beats superpowers's `requesting-code-review` + `receiving-code-review` by
+## Why this skill is opinionated
 
-- **Three independent lenses, not one** — catches biases of single reviewer
+- **Three independent lenses** — catches biases of a single reviewer
 - **Coordinator synthesises** — producer gets one verdict, not three opinions to interpret
 - **Contested findings surfaced** — high-signal cases for human judgement

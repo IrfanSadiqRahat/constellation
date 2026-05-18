@@ -61,6 +61,6 @@ parallel:
 - Parallel for sequential dependencies — race conditions in your pipeline
 - More than 8 parallel agents per dispatch — coordination cost dominates
 
-## Novel to Constellation
+## Why this matters
 
-Superpowers's `dispatching-parallel-agents` exists but is unstructured. Constellation's `parallel-execution` adds four named patterns, each with a declared merge strategy, making outcomes reproducible.
+Four named patterns with declared merge strategies make multi-agent outcomes reproducible. The shape of the merge is part of the contract, not improvised.

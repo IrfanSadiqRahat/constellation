@@ -71,9 +71,9 @@ adjacent_risks: <where else this class of bug could live>
 - "Works on my machine" closure — not closure
 - Fixing the symptom and moving on without root-cause analysis
 
-## Beats superpowers's `systematic-debugging` by
+## Why this skill is opinionated
 
-- **Five phases not four** — explicit "isolate via bisect" phase
+- **Five phases** — explicit "isolate via bisect" phase
 - **Role-aware toolkit per role** — Postgres bugs ≠ React bugs ≠ AI hallucinations
 - **Mechanism field**, not just root cause
 - **Adjacent risks** surfaced
